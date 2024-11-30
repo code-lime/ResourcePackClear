@@ -26,9 +26,6 @@ jobs:
       - name: Build (v${{ env.PROJECT_VERSION }})
         run: gradle build
 
-      - uses: thecodemonkey/action-get-gradle-version@master
-        id: version
-
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
