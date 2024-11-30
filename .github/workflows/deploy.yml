@@ -18,17 +18,20 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Read commit index
+      - name: Read version
         run: |
-          GITHUB_COMMIT_INDEX=$(git rev-list --count HEAD)
-          echo "GITHUB_COMMIT_INDEX=$GITHUB_COMMIT_INDEX" >> $GITHUB_ENV
+          echo "PROJECT_VERSION=$(gradle -q printVersion)" >> $GITHUB_ENV
+        id: android_version
 
-      - name: Build (#${{ env.GITHUB_COMMIT_INDEX }})
+      - name: Build (v${{ env.PROJECT_VERSION }})
         run: gradle build
+
+      - uses: thecodemonkey/action-get-gradle-version@master
+        id: version
 
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/libs/*.jar"
-          tag: "#${{ env.GITHUB_COMMIT_INDEX }}"
-          body: "Release #${{ secrets.GITHUB_TOKEN }}"
+          tag: "v${{ env.PROJECT_VERSION }}"
+          body: "Release v${{ env.PROJECT_VERSION }}"
