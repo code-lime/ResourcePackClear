@@ -27,21 +27,7 @@ jobs:
         run: gradle build
 
       - name: Create Release
-        id: create_release
-        uses: comnoco/create-release-action@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: "#${{ env.GITHUB_COMMIT_INDEX }}"
-          release_name: "Release #${{ env.GITHUB_COMMIT_INDEX }}"
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: sekwah41/upload-release-assets@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/libs/*.jar
-          asset_name: null
-          asset_content_type: null
+          artifacts: "build/libs/*.jar"
+          body: "Release #${{ secrets.GITHUB_TOKEN }}"
