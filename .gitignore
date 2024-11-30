@@ -1,0 +1,17 @@
+/out/
+/org/
+/build/
+/bin/
+/.vscode/
+/.idea/
+/.gradle/
+/__.idea/
+
+/hs_err_pid(.*).log
+/replay_pid(.*).log
+/.project
+/.classpath
+.settings/
+
+.classpath
+.project
