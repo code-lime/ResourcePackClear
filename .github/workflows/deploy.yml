@@ -30,4 +30,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/libs/*.jar"
+          tag: "#${{ env.GITHUB_COMMIT_INDEX }}"
           body: "Release #${{ secrets.GITHUB_TOKEN }}"
