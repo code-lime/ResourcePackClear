@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import java.nio.file.Path;
 
 @Plugin(
-        id = "lime",
+        id = "resourcepackclear",
         name = "ResourcePackClear",
         version = BuildConstants.VERSION,
         authors = "Lime"
